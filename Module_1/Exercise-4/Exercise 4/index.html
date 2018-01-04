@@ -1,10 +1,31 @@
 <script src="https://npmcdn.com/vue/dist/vue.js"></script>
 
+<style>
+#effect {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
+
+.highlight {
+  background-color: red;
+  width: 200px !important;
+}
+
+.shrink {
+  background-color: gray;
+  width: 50px !important;
+}
+
+</style>
+
+
+
 <div id="exercise">
   <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
   <div>
     <button @click="startEffect">Start Effect</button>
-    <div id="effect"></div>
+    <div id="effect" :class="switchEffect"></div>
   </div>
   <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
   <div>I got no class :(</div>
@@ -30,3 +51,25 @@
     <div></div>
   </div>
 </div>
+
+<script>
+  new Vue({
+    el: '#exercise',
+    data: {
+      switchEffect: {
+        highlight: true,
+        shrink: false
+      }
+    },
+    methods: {
+      startEffect: function() {
+        var vm = this;
+        setInterval(function(){
+          vm.switchEffect.highlight = !vm.switchEffect.highlight;
+          vm.switchEffect.shrink = !vm.switchEffect.shrink;
+        }, 1000)
+      }
+    }
+  });
+
+</script>

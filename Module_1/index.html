@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Module 1 - Templates</title>
+</head>
+<body>
+
+	<div id="app">
+		<p>{{ sayHello() }}</p>
+		<hr>
+		<p>{{ title }}</p>
+		<hr>
+		<a v-bind:href="link">Google</a> <!-- USe V-bind directive to dynamically bind links -->
+		<hr>
+		<h1 v-once>{{title}}</h1>
+		<hr>
+		<br>
+
+		<button v-on:click="increment()">+</button>
+		<button v-on:click="decrement()">-</button>
+		<p>{{counter}}</p>
+		<hr>
+		<br>
+
+		<p v-on:mousemove="updateCoordinates">
+			Coordinates: {{x}} / {{y}}
+			- <span v-on:mousemove.stop="">Dead Spot</span>
+		</p>
+		<br>
+		<input type="text" @keyup.enter="alertMe">
+		<hr><br>
+
+		<button @click="counter++">Increase</button>
+		<button @click="counter--">Decrease</button>
+		<p>Counter: {{counter}}</p>
+		<p>Result: {{output}}</p>
+		<a href="CSS-styling.html">CSS</a>
+	</div>
+
+
+
+
+
+
+	<script src="https://unpkg.com/vue/dist/vue"></script>
+	<script>
+		new Vue ({
+			el: '#app',
+			data: {
+				title: 'Hello World!',
+				link: 'http://www.google.com',
+				finishedLink: '<a></a>',
+				counter: 0,
+				x: 0,
+				y: 0
+
+			},
+			computed:{//Computed Properties are used when something needs to be returned immediatley
+				output (){
+					return this.counter > 5 ? 'Greater Than 5' : 'Smaller Than 5';
+				}
+			},
+			watch:{
+				counter (value){
+					var vm = this;
+					setTimeout(function(){
+						vm.counter = 0;
+					}, 5000)
+				}
+			},			
+			methods: {
+				sayHello (){
+					this.title = 'Hello';
+					return this.title;
+				},
+				increment (){
+					return this.counter++;
+				},
+				decrement (){
+					return this.counter--;
+				},
+				updateCoordinates (event){
+					this.x = event.clientX;
+					this.y = event.clientY;
+				},
+				alertMe (){
+					alert('Alert!');
+				}
+
+			}
+		})
+
+
+
+	</script>
+</body>
+</html>

@@ -17,6 +17,19 @@
   width: 50px !important;
 }
 
+.changeBackground{
+  background-color: purple;
+}
+.addBorder{
+  border: 2px green solid;
+}
+.textColor{
+  color: white;
+}
+.addPadding{
+  padding: 20px;
+}
+
 </style>
 
 
@@ -25,14 +38,14 @@
   <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
   <div>
     <button @click="startEffect">Start Effect</button>
-    <div id="effect" :class="switchEffect"></div>
+    <div id="effect" v-bind:class="effectClasses"></div>
   </div>
   <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
-  <div>I got no class :(</div>
+  <div :class="[addBorder, changeBackground, textColor]">I got no class :(</div>
   <!-- 3) Let the user enter a class (create some example classes) and attach it -->
   <div>
-    <input type="text">
-    <div></div>
+    <input type="text" v-model="userClass">
+    <div :class="[{addPadding: true}, userClass]"></div>
   </div>
   <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
   <div>
@@ -56,19 +69,23 @@
   new Vue({
     el: '#exercise',
     data: {
-      switchEffect: {
-        highlight: true,
-        shrink: false
-      }
+      effectClasses: {
+        highlight: false,
+        shrink: true
+      },
+      addBorder: 'addBorder',
+      changeBackground: 'changeBackground',
+      textColor: 'textColor',
+      userClass: ''
     },
     methods: {
       startEffect: function() {
         var vm = this;
-        setInterval(function(){
-          vm.switchEffect.highlight = !vm.switchEffect.highlight;
-          vm.switchEffect.shrink = !vm.switchEffect.shrink;
-        }, 1000)
-      }
+        setInterval(function() {
+          vm.effectClasses.highlight = !vm.effectClasses.highlight;
+          vm.effectClasses.shrink = !vm.effectClasses.shrink;
+        }, 1000);
+      },
     }
   });
 

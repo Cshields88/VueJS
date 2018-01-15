@@ -13,10 +13,21 @@
 	<hr>
 	<br>
 	<ul>
-		<li v-for="ingredient in ingredients">{{ ingredient }}</li>
+		<li v-for="(ingredient, i) in ingredients">{{ ingredient }} ({{i}})</li>
 		<br>
-		<li v-for="person in persons">Name: {{person.name}} <br> Age: {{person.age}}</li>
+		<li v-for="person in persons">Name: {{person.name}} <br> Age: {{person.age}}
+		</li>
+		<hr>
+		<li v-for="person in persons">
+			<span v-for="value in person">{{ value }}</span>
+		</li>
+		<hr>
+		<li v-for="person in persons">
+			<div v-for="(value, key) in person"> {{key}}: {{ value }}</div>
+		</li>
 	</ul>
+
+	<div v-for="n in 10">{{n}}</div> //Loop numbers through 10
 
 </div>
 <script>
@@ -26,8 +37,8 @@
 			show: true,
 			ingredients:['meat', 'fruit', 'cookies'],
 			persons: [
-			{name: 'Chris', age: 29},
-			{name: 'Deanna', age: 29}
+			{name: 'Chris ', age: 29},
+			{name: 'Deanna ', age: 29}
 			]
 		}
 	})

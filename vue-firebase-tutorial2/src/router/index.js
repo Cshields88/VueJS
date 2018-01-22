@@ -9,9 +9,12 @@ Vue.use(Router)
 export default new Router({
 	routes: [
 	{
+		path: '*',
+		redirecct: '/Login'
+	},
+	{
 		path: '/',
-		name: 'HelloWorld',
-		component: HelloWorld
+		redirect: '/Login'
 	},
 	{
 		path: '/Login',
@@ -22,6 +25,12 @@ export default new Router({
 		path: '/SignUp',
 		name: 'SignUp',
 		component: SignUp
+	},
+	{
+		path: '/HelloWorld',
+		name: 'HelloWorld',
+		component: HelloWorld,
+		requiresAuth: true
 	}
 	]
 })

@@ -1,52 +1,38 @@
 <template>
 	<div>
-		<!-- First Name -->
 		<div class="form-group">
-			<label for="firstName">First Name</label>
-			<input
-			type="text"
-			id="firstName"
-			class="form-control"
-			:value="firstName"
-			:input="nameChanged(true, $event)"
-			>
+			<label>First Name</label>
+			<input type="text" class="form-control" :value="firstName" @input="nameChanged(true, $event)">
 		</div>
-		<!-- Last Name -->
 		<div class="form-group">
-			<label for="lastName">Last Name</label>
-			<input
-			type="text"
-			id="lastName"
-			class="form-control"
-			:value="lastName"
-			:input="nameChanged(false, $event)"
-			>
+			<label>Last Name</label>
+			<input type="text" class="form-control" :value="lastName" @input="nameChanged(false, $event)">
 		</div>
 	</div>
 </template>
+
 <script>
-export default{
+export default {
 	props: ['value'],
-	methods:{		
-		nameChanged(isFirst, event){
-			var name = '';
-			if(isFirst){
+	methods: {
+		nameChanged(isFirst, event) {
+			let name = '';
+			if (isFirst) {
 				name = event.target.value + ' ' + this.lastName;
-			} else{
-				name =this.firstName + ' ' + event.target.value;
+			} else {
+				name = this.firstName + ' ' + event.target.value;
 			}
 			this.value = name;
-			this.$emit('input', this.value)
+			this.$emit('input', this.value);
 		}
 	},
-	computed:{
-		firstName(){
+	computed: {
+		firstName() {
 			return this.value.split(" ")[0];
 		},
-		lastName(){
+		lastName() {
 			return this.value.split(" ")[1];
 		}
 	}
 }
-
 </script>

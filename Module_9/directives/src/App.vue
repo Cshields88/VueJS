@@ -5,8 +5,8 @@
     <p v-html="'<strong>This is some bold text</strong>'"></p>
     <hr>
     <h1>Custom Components</h1>
-    <p v-highlight:background.delayed="'purple'">hello</p>
-    <p v-local-highlight:background.delayed.blink="'green'">hello</p>
+    <p v-highlight:background.delayed="'red'">hello</p>
+    <p v-local-highlight:background.delayed.blink="{mainColor: 'red', secondColor: 'green', delay: 500}">hello</p>
   </div>
 </template>
 
@@ -22,8 +22,8 @@ export default {
       delay = 3000;
     }
     if(binding.modifiers['blink']){
-      let mainColor = binding.value;
-      let secondColor = 'blue';
+      let mainColor = binding.value.mainColor;
+      let secondColor = binding.value.secondColor;
       let currentColor = mainColor;
       setTimeout(() => {
         setInterval(() => {
@@ -33,15 +33,15 @@ export default {
           }else{
             el.style.color = currentColor;
           }
-        },1000);
+        },binding.value.delay);
 
       }, delay)
     }
     setTimeout(() => {
       if(binding.arg == 'background'){
-        el.style.backgroundColor = binding.value;
+        el.style.backgroundColor = binding.value.mainColor;
       }else{
-        el.style.color = binding.value;
+        el.style.color = binding.value.mainColor;
       }
     }, delay)
     

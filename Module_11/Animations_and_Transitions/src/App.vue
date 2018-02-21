@@ -9,6 +9,9 @@
                 <transition name="fade">
                 <div class="alert alert-info" v-if="show">This is an alert!</div>
                 </transition>
+                <transition name="slide">
+                <div class="alert alert-info" v-if="show">This is an alert!</div>
+                </transition>
 
             </div>
         </div>
@@ -38,5 +41,34 @@
 .fade-leave-active{
     transition: opacity 1s;
     opacity: 0;
+}
+.slide-enter{
+
+}
+.slide-enter-active{
+    animation: slide-in 1s ease-out forwards;
+}
+.slide-leave{
+    
+}
+.slide-leave-active{
+    animation: slide-out 1s eas-out forwards;
+}
+@keyframes slide-in{
+    from{
+        transform: translateY(20px);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-out{
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(20px);
+    }
 }
 </style>

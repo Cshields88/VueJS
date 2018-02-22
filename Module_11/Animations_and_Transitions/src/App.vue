@@ -8,9 +8,9 @@
                   <option value="fade">Fade</option>
                   <option value="slide">Slide</option>
                 </select>
-                <button class="btn btn-priimary" @click="show=!show">Show Alert</button>
+                <button class="btn btn-primary" @click="show=!show">Show Alert</button>
                 <br><br>
-                <transition :name="fade">
+                <transition :name="alertAnimation">
                     <div class="alert alert-info" v-if="show">This is an alert!</div>
                 </transition>
                 <transition :name="slide" type="animation">
@@ -18,6 +18,10 @@
                 </transition>
                 <transition enter-active-class="animated bounce" leave-active-class="animated shake">
                     <div class="alert alert-info" v-if="show">This is an alert!</div>
+                </transition>
+                   <transition :name="alertAnimation" mode="out-in">
+                    <div class="alert alert-info" v-if="show" key="info">This is an alert!</div>
+                    <div class="alert alert-danger" v-else key="warning">This is an warning!</div>
                 </transition>
 
             </div>
@@ -58,7 +62,7 @@ export default {
 
 .slide-leave-active {
   animation: slide-out 1s eas-out forwards;
-  transition: opacity 3s;
+  transition: opacity 1s;
   opacity: 0;
 }
 @keyframes slide-in {

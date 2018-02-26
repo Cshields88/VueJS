@@ -54,12 +54,18 @@
                <hr>
                <button class="btn btn-primary" @click="addItem()">Add Item</button>
                <ul class="list-group">
-              <transition-group>
-                   <li class="list-group-item text-center" v-for="(number, index) in numbers" @click="removeItem(index)">
+              <transition-group name="slide">
+                   <li  
+                   :key="number"
+                    class="list-group-item text-center" 
+                    v-for="(number, index) in numbers" 
+                    @click="removeItem(index)"
+                    >
                    {{number}}
                  </li>
               </transition-group>
-               </ul> 
+               </ul> <br><br>
+               <hr>
             </div>
         </div>
     </div>
@@ -168,6 +174,10 @@ export default {
   animation: slide-out 1s eas-out forwards;
   transition: opacity 1s;
   opacity: 0;
+  position: absolute;
+}
+.slide-move {
+  transition: transform 1s;
 }
 @keyframes slide-in {
   from {

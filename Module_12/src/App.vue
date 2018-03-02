@@ -13,6 +13,14 @@
                     <input type="text" class="form-control" v-model="user.email">
                 </div>
                 <button class="btn btn-primary" @click="submit">Submit</button>
+                <hr>
+                <button class="btn btn-success" @click="fetchData">Get Data</button>
+                <h3>Users</h3>
+                <hr>
+                <ul class="list-group">
+                    <li class="list-group-item" v-for="user in users"><strong>Username:</strong> {{user.username}}
+                      <br><strong>Email: </strong>{{user.email}}</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -25,15 +33,39 @@ export default {
       user: {
         username: "",
         email: ""
-      }
+      },
+      users: []
     };
   },
   methods: {
     submit() {
-      this.$http.post(
-        "https://vuejs-tutorial-61e19.firebaseio.com/data.json",
-        this.user
-      );
+      this.$http
+        .post(
+          "https://vuejs-tutorial-61e19.firebaseio.com/data.json",
+          this.users
+        )
+        .then(
+          response => {
+            console.log(response);
+          },
+          error => {
+            console.log(error);
+          }
+        );
+    },
+    fetchData() {
+      this.$http
+        .get("https://vuejs-tutorial-61e19.firebaseio.com/data.json")
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          const resultArray = [];
+          for (let key in data) {
+            resultArray.push(data[key]);
+          }
+          this.users = resultArray;
+        });
     }
   }
 };

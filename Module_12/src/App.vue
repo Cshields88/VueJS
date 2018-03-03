@@ -39,28 +39,23 @@ export default {
   },
   methods: {
     submit() {
-      this.$http
-        .post(
-          "https://vuejs-tutorial-61e19.firebaseio.com/data.json",
-          this.users
-        )
-        .then(
-          response => {
-            console.log(response);
-          },
-          error => {
-            console.log(error);
-          }
-        );
+      this.$http.post("", this.users).then(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     },
     fetchData() {
       this.$http
-        .get("https://vuejs-tutorial-61e19.firebaseio.com/data.json")
+        .get("")
         .then(response => {
           return response.json();
         })
         .then(data => {
-          const resultArray = [];
+          let resultArray = [];
           for (let key in data) {
             resultArray.push(data[key]);
           }

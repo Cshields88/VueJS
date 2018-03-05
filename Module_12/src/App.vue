@@ -18,8 +18,8 @@
                 <h3>Users</h3>
                 <hr>
                 <ul class="list-group">
-                    <li class="list-group-item" v-for="user in users"><strong>Username:</strong> {{user.username}}
-                      <br><strong>Email: </strong>{{user.email}}</li>
+                    <li class="list-group-item" v-for="u in users"><strong>Username:</strong> {{u.username}}
+                      <br><strong>Email: </strong>{{u.email}}</li>
                 </ul>
             </div>
         </div>
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$http.post("", this.users).then(
+      this.$http.post("", this.user).then(
         response => {
           console.log(response);
         },
@@ -55,11 +55,12 @@ export default {
           return response.json();
         })
         .then(data => {
-          let resultArray = [];
+          const resultArray = [];
           for (let key in data) {
             resultArray.push(data[key]);
           }
           this.users = resultArray;
+          console.log(resultArray);
         });
     }
   }

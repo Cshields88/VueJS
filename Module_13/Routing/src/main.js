@@ -7,6 +7,7 @@ Vue.use(VueRouter); //imports router package
 
 const router = new VueRouter({
   routes
+  // mode: "history"
 });
 
 new Vue({

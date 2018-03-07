@@ -7,7 +7,7 @@ export const routes = [
     component: Home
   },
   {
-    path: "/user", //this is what is placed at the end of the url
+    path: "/user/:id", //this is what is placed at the end of the url
     component: User //What component needs to be loaded when directed to path
   }
 ];

@@ -7,7 +7,8 @@ import Home from "./components/Home.vue";
 export const routes = [
   {
     path: "",
-    component: Home
+    component: Home,
+    name: 'home'
   },
   {
     path: "/user", //this is what is placed at the end of the url

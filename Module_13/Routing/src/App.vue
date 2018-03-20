@@ -5,8 +5,9 @@
                 <h1>Routing</h1>
                
                 <hr>
-                <app-header></app-header>
-                <router-view></router-view> <!-- where the routes are loaded -->
+                <router-view name="header-top"></router-view>
+                <router-view></router-view>
+                <router-view name="header-bottom"></router-view> <!-- where the routes are loaded -->
             </div>
         </div>
     </div>

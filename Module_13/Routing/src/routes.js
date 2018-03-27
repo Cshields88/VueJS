@@ -18,7 +18,13 @@ export const routes = [
     components: { default: User, "header-bottom": Header },
     children: [
       { path: "", component: UserStart },
-      { path: ":id", component: UserDetail },
+      {
+        path: ":id",
+        component: UserDetail,
+        beforeEnter: (to, from, next) => {
+          console.log("inside route setup");
+        }
+      },
       { path: ":id/edit", component: UserEdit, name: "userEdit" }
     ]
   },

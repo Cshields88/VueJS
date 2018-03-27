@@ -20,6 +20,11 @@ const router = new VueRouter({
   }
 });
 
+router.beforeEach((to, from, next) => {
+  console.log("global beforeEach");
+  next(); //allows routing action to continue
+});
+
 new Vue({
   el: "#app",
   router,
